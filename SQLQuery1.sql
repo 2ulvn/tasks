@@ -1,4 +1,3 @@
--- Create the database
 CREATE DATABASE RetailStoreDB;
 
 USE RetailStoreDB;
@@ -22,29 +21,23 @@ CREATE TABLE Products (
 );
 GO
 
--- Create Orders table
 CREATE TABLE Orders (
-    OrderID INT IDENTITY(1,1) PRIMARY KEY,
-    CustomerID INT,
-    ProductID INT,
-    OrderDate DATE,
+    OrderID INT IDENTITY(1,1) PRIMARY KEY, CustomerID INT,
+    ProductID INT, OrderDate DATE,
     Quantity INT,
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
 
--- Insert sample data into Customers
-INSERT INTO Customers (FirstName, LastName, Email, RegistrationDate) VALUES
+insert into  Customers (FirstName, LastName, Email, RegistrationDate) VALUES
 ('John', 'Doe', 'john.doe@example.com', '2023-01-15'),
 ('Jane', 'Smith', 'jane.smith@example.com', '2023-03-22'),
 ('Michael', 'Brown', 'michael.brown@example.com', '2023-06-10'),
 ('Emily', 'Davis', 'emily.davis@example.com', '2023-09-05'),
-('Chris', 'Wilson', 'chris.wilson@example.com', '2023-11-12');
+('Chris', 'Wilson', 'chris.wilson@example.com', '2023-11-12'),
+('salah', 'Brown', 'salah.brown@example.com', '2021-06-10');
 
-insert into Customers values('salah', 'Brown', 'salah.brown@example.com', '2021-06-10');
-
--- Insert sample data into Products
 INSERT INTO Products (ProductName, Category, Price, StockQuantity) VALUES
 ('Laptop', 'Electronics', 999.99, 10),
 ('Phone', 'Electronics', 699.99, 20),
@@ -53,7 +46,6 @@ INSERT INTO Products (ProductName, Category, Price, StockQuantity) VALUES
 ('Keyboard', 'Accessories', 49.99, 25);
 
 
--- Insert sample data into Orders
 INSERT INTO Orders (CustomerID, ProductID, OrderDate, Quantity) VALUES
 (1, 1, '2024-01-10', 1),
 (2, 3, '2024-01-12', 2),
@@ -62,19 +54,17 @@ INSERT INTO Orders (CustomerID, ProductID, OrderDate, Quantity) VALUES
 (5, 4, '2024-01-20', 1);
 GO
 
--- Query all records from each table
 SELECT * FROM Customers;
 SELECT * FROM Products;
 SELECT * FROM Orders;
 GO
 
--- Show customers who registered after a specific date
 select* from Customers where RegistrationDate> '2023-07-01';
 GO
 
--- Select the top 3 most expensive products
+-- top 3 most expensive products
 
-select top 4 * from Products order by Price desc;
+select top 3 * from Products order by Price desc;
 
 
 -- Join tables to display orders with customer names and product details
